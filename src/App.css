@@ -1,0 +1,7 @@
+/* This will apply to the entire application */
+html, body, #root {
+  width: 100%;
+  overflow-x: hidden; /* Hides horizontal scroll */
+  margin: 0;
+  padding: 0;
+}
