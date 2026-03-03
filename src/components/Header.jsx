@@ -178,17 +178,7 @@ export default function Header() {
             Portfolio — 2025
           </p>
 
-          <h2 style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(2rem, 5vw, 4rem)",
-            lineHeight: 1.1,
-            color: "#0a0a0a",
-            letterSpacing: "-0.04em",
-            marginBottom: "0.8rem",
-          }}>
-            Farai
-          </h2>
+
 
           <p style={{
             fontFamily: "'Poppins', sans-serif",
@@ -257,7 +247,7 @@ export default function Header() {
             opacity: nameOp,
           }}
         >
-          Farai
+          Farai Mahaso
         </motion.h1>
 
         <Ticker />
@@ -331,7 +321,7 @@ export default function Header() {
               margin: 0,
             }}
           >
-            Farai
+            Farai<br />Mahaso
           </motion.h1>
         </motion.div>
 
