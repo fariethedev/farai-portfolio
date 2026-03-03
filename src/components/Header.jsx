@@ -18,8 +18,8 @@ export default function Header() {
 
         {/* Right - Content (slides in from right) */}
         <div className="text-center md:text-left max-w-xl slide-in-right">
-          <h1 className="text-2xl md:text-6xl font-bold mb-4">
-            Software Developer & Graphic Designer
+          <h1 className="text-1xl md:text-6xl font-bold mb-4">
+            FullStack Developer & Graphic Designer
           </h1>
           <p className="text-lg md:text-xl mb-8">
             My name is <span className="font-semibold">Farai Mahaso</span>, and I am a final-year Computer Science student at WSEI Lublin. I specialize in graphic design and web development, with proficiency in Java, SQL, and Python, as well as strong experience with Figma and Adobe Creative Suite.
