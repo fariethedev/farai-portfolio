@@ -1,29 +1,64 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
-import "../header.css"; // Contains your animated gradient
 
 export default function Cta() {
   return (
-    <div className="animated-gradient text-white py-12 w-full rounded-none">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 slide-in-left">
-            Ready to Transform Your Ideas Into Reality?
-          </h2>
-          <p className="text-lg md:text-xl mb-8 opacity-90 slide-in-right max-w-2xl mx-auto">
-            Let's create something extraordinary together. From concept to launch, I'll be with you every step of the way to deliver exceptional results.
-          </p>
-          <div className="fade-in">
-            <a 
-              href="/contact" 
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-bold rounded-none transition-all duration-300 hover:scale-105"
-            >
-              Get Started Today
-              <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-        </div>
+    <section
+      style={{ background: "var(--off-white)" }}
+      className="w-full py-28 px-6"
+    >
+      <div className="max-w-5xl mx-auto text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }} viewport={{ once: false }}
+          style={{ color: "var(--red)", fontFamily: "monospace", fontSize: "0.8rem", letterSpacing: "0.12em" }}
+          className="mb-6 uppercase"
+        >
+          // Let's Work Together
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} viewport={{ once: false }}
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 900,
+            fontSize: "clamp(3rem, 10vw, 8rem)",
+            lineHeight: 0.92,
+            color: "var(--black)",
+            letterSpacing: "-0.01em",
+          }}
+          className="mb-10"
+        >
+          Ready to Build Something Great?
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }} viewport={{ once: false }}
+        >
+          <a
+            href="/contact"
+            style={{
+              background: "var(--black)",
+              color: "#fff",
+              padding: "1rem 2.5rem",
+              fontSize: "0.9rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.6rem",
+              textTransform: "uppercase",
+              transition: "background 0.2s, color 0.2s",
+            }}
+            className="hover:bg-[#e03120]"
+          >
+            Get Started Today <FaArrowRight />
+          </a>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,99 +1,170 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowRight, FaBars, FaTimes, FaLinkedin } from "react-icons/fa";
-import "../gradient.css"; // Custom CSS for animation
+import { motion, AnimatePresence } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const links = [
+    { label: "Projects", to: "/projects" },
+    { label: "About", to: "/about" },
+    { label: "Contact", to: "/contact" },
+  ];
+
+  // When not scrolled we're over the off-white hero — use dark text/icons
+  const onLight = !scrolled;
+
   return (
-    <div className="fixed top-0 left-0 w-full animated-gradient text-white p-4 z-50">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo */}
-        <h1 className="font-bold text-2xl">Farai.dev</h1>
-
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-10 text-lg font-bold items-center">
-          <li className="hover:text-blue-300">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="hover:text-blue-300">
-            <Link to="/about">About</Link>
-          </li>
-          <li className="hover:text-blue-300">
-            <Link to="/projects">Projects</Link>
-          </li>
-          <li className="hover:text-blue-300">
-            <Link to="/contact">Contact</Link>
-          </li>
-
-        </ul>
-
-        {/* Hire Me Button (Desktop) */}
-        <Link
-          to="/hire"
-          className="hidden md:flex items-center space-x-2 hover:text-blue-300 font-semibold"
-        >
-          <span>Hire Me</span>
-          <FaArrowRight />
-        </Link>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(true)}
-          className="md:hidden text-2xl focus:outline-none"
-        >
-          <FaBars />
-        </button>
-      </nav>
-
-      {/* Overlay - closes menu when clicked */}
-      <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 md:hidden ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        onClick={() => setIsOpen(false)}
-      ></div>
-
-      {/* Side Drawer Menu */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-slate-900 border-l border-slate-700 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+    <>
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{
+          background: scrolled
+            ? "rgba(10,10,10,0.96)"
+            : "rgba(242,240,235,0.85)",
+          backdropFilter: "blur(14px)",
+          borderBottom: scrolled
+            ? "1px solid rgba(255,255,255,0.06)"
+            : "1px solid rgba(10,10,10,0.08)",
+          transition: "background 0.35s, border 0.35s",
+        }}
+        className="fixed top-0 left-0 w-full z-50"
       >
-        <div className="flex flex-col h-full p-6">
-          <div className="flex justify-end mb-8">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-2xl text-gray-400 hover:text-white focus:outline-none"
-            >
-              <FaTimes />
-            </button>
-          </div>
+        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <Link
+            to="/"
+            style={{
+              color: onLight ? "#0a0a0a" : "#fff",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              fontSize: "0.85rem",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              transition: "color 0.3s",
+            }}
+          >
+            Farai.dev
+          </Link>
 
-          <div className="flex flex-col space-y-6 text-lg font-bold text-center">
-            <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-blue-300">Home</Link>
-            <Link to="/about" onClick={() => setIsOpen(false)} className="hover:text-blue-300">About</Link>
-            <Link to="/projects" onClick={() => setIsOpen(false)} className="hover:text-blue-300">Projects</Link>
-            <Link to="/contact" onClick={() => setIsOpen(false)} className="hover:text-blue-300">Contact</Link>
-            <a
-              href="https://www.linkedin.com/in/farai-mahaso-275a88267"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex justify-center items-center space-x-2 hover:text-blue-300"
-            >
-              <FaLinkedin size={20} />
-              <span>LinkedIn</span>
-            </a>
-            <Link
-              to="/hire"
+          {/* Desktop links */}
+          <ul className="hidden md:flex items-center gap-10">
+            {links.map((l) => (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  style={{
+                    color: onLight ? "rgba(10,10,10,0.65)" : "rgba(255,255,255,0.65)",
+                    fontSize: "0.85rem",
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    transition: "color 0.3s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = onLight ? "#0a0a0a" : "#fff")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = onLight ? "rgba(10,10,10,0.65)" : "rgba(255,255,255,0.65)")}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Hire Me */}
+          <Link
+            to="/contact"
+            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2 transition-all duration-200"
+            style={{
+              border: onLight ? "1px solid rgba(10,10,10,0.35)" : "1px solid rgba(255,255,255,0.3)",
+              color: onLight ? "#0a0a0a" : "#fff",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "#e03120";
+              e.currentTarget.style.color = "#e03120";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = onLight ? "rgba(10,10,10,0.35)" : "rgba(255,255,255,0.3)";
+              e.currentTarget.style.color = onLight ? "#0a0a0a" : "#fff";
+            }}
+          >
+            Hire Me →
+          </Link>
+
+          {/* Mobile burger */}
+          <button
+            onClick={() => setIsOpen(true)}
+            style={{ color: onLight ? "#0a0a0a" : "#fff", transition: "color 0.3s" }}
+            className="md:hidden text-xl focus:outline-none"
+          >
+            <FaBars />
+          </button>
+        </nav>
+      </motion.header>
+
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/70 z-40"
               onClick={() => setIsOpen(false)}
-              className="flex justify-center items-center space-x-2 hover:text-blue-300 mt-4 border border-blue-400 rounded-md py-2"
+            />
+            <motion.div
+              key="drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.28 }}
+              className="fixed top-0 right-0 h-full w-64 z-50 flex flex-col p-8"
+              style={{ background: "#0a0a0a", borderLeft: "1px solid rgba(255,255,255,0.08)" }}
             >
-              <span>Hire Me</span>
-              <FaArrowRight />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="self-end text-xl mb-10"
+                style={{ color: "rgba(255,255,255,0.4)" }}
+              >
+                <FaTimes />
+              </button>
+              <nav className="flex flex-col gap-6">
+                {links.map((l) => (
+                  <Link
+                    key={l.to}
+                    to={l.to}
+                    onClick={() => setIsOpen(false)}
+                    style={{ color: "#fff", fontSize: "1.5rem", fontWeight: 700, textDecoration: "none" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "#e03120")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "#fff")}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-4 text-sm font-semibold text-center py-3 transition-all"
+                  style={{ border: "1px solid rgba(255,255,255,0.2)", color: "#fff", textDecoration: "none" }}
+                >
+                  Hire Me →
+                </Link>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

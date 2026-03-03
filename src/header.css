@@ -1,14 +1,6 @@
-/* Animated gradient background */
+/* Solid dark background */
 .animated-gradient {
-  background: linear-gradient(-45deg, black, #001f3f, #003366, black);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  background: #111111;
 }
 
 /* Slide-in animations */
@@ -27,6 +19,7 @@
     transform: translateX(-100px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -38,11 +31,13 @@
     transform: translateX(100px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
   }
 }
+
 .fade-in {
   animation: fadeInUp 1s ease forwards;
   opacity: 0;
@@ -53,23 +48,13 @@
     transform: translateY(30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
   }
 }
-/* header.css or gradient.css */
-.animated-gradient {
-  background: linear-gradient(-45deg, #000, #1e3a8a, #000, #1e40af);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
-}
 
-@keyframes gradientAnimation {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
 
 .fade-in-right {
   opacity: 0;
@@ -83,6 +68,7 @@
     transform: translateX(0);
   }
 }
+
 /* Projects specific styles */
 .backdrop-blur-sm {
   backdrop-filter: blur(8px);
@@ -101,11 +87,12 @@
   .projects-container {
     padding: 1rem;
   }
-  
+
   .project-card {
     padding: 1.5rem;
   }
 }
+
 /* Project Card Styles */
 .project-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;

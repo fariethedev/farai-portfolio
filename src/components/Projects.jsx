@@ -1,210 +1,193 @@
 import React from "react";
-import { FaGithub, FaExternalLinkAlt, FaClock, FaTools, FaReact, FaNodeJs, FaDatabase, FaPalette } from "react-icons/fa";
-import { SiNextdotjs, SiTailwindcss, SiFirebase, SiStripe, SiPostgresql, SiGraphql } from "react-icons/si";
+import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt, FaClock, FaTools, FaReact, FaNodeJs } from "react-icons/fa";
 import { DiMongodb } from "react-icons/di";
+import { SiFirebase, SiStripe, SiPostgresql, SiNextdotjs, SiGraphql } from "react-icons/si";
 import { Link } from "react-router-dom";
-import "../header.css";
+
+const projects = [
+  {
+    title: "BHASO Website",
+    year: "2025",
+    description: "Comprehensive platform for Batanai HIV/AIDS Service Organization — resource library, event management, donation processing with secure payment gateway.",
+    technologies: ["React", "Node.js", "MongoDB"],
+    status: "live",
+    codeLink: "https://github.com/fariethedev/bhasomain",
+    demoLink: "https://batanaihivaidsserviceorg.netlify.app/",
+    image: "/images/bhasowebsite.PNG",
+  },
+  {
+    title: "Vebble",
+    year: "2025",
+    description: "Hybrid marketplace and social platform with follower system, product listings, social feed, direct messaging, and payment integration.",
+    technologies: ["React", "Firebase", "Node.js", "Stripe"],
+    status: "live",
+    codeLink: "#",
+    demoLink: "#",
+    image: "https://cdn.dribbble.com/userupload/6735262/file/original-c66f947e624727398705ba7ff4dd52d9.png?resize=1024x768&vertical=center",
+  },
+  {
+    title: "Swerrv Clothing Store",
+    year: "2025",
+    description: "Modern e-commerce solution with product catalog, shopping cart, Stripe checkout, and order tracking.",
+    technologies: ["Next.js", "Stripe", "PostgreSQL"],
+    status: "coming-soon",
+    image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1470&q=80",
+  },
+  {
+    title: "Task Manager Pro",
+    year: "2026",
+    description: "Collaborative productivity tool with team workspaces, drag-and-drop task boards, and time tracking.",
+    technologies: ["React", "GraphQL"],
+    status: "under-development",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1415&q=80",
+  },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+};
+
+function padNum(n) {
+  return String(n + 1).padStart(2, "0");
+}
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "BHASO Website",
-      description: "A comprehensive platform for Batanai HIV/AIDS Service Organization featuring:",
-      details: [
-        "✓ Resource library with categorized articles and documents",
-        "✓ Event management system with registration",
-        "✓ Donation processing with secure payment gateway",
-        "✓ Admin dashboard for content management"
-      ],
-      technologies: [
-        { name: "React", icon: <FaReact className="text-blue-400" /> },
-        { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-        { name: "MongoDB", icon: <DiMongodb className="text-green-600" /> }
-      ],
-      status: "live",
-      codeLink: "https://github.com/Hustlr27/bhasomain",
-      demoLink: "https://batanaihivaidsserviceorg.netlify.app/",
-      image: "src/assets/bhasowebsite.png"
-    },
-    {
-      title: "Vebble",
-      description: "A hybrid marketplace and social platform featuring:",
-      details: [
-        "✓ User profiles with follower/following system",
-        "✓ Product listings with categories and search",
-        "✓ Social feed with posts, likes, and comments",
-        "✓ Direct messaging between users",
-        "✓ Rating and review system for sellers",
-        "✓ Payment integration for transactions"
-      ],
-      technologies: [
-        { name: "React", icon: <FaReact className="text-blue-400" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-yellow-400" /> }, 
-        { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-        { name: "MongoDB", icon: <DiMongodb className="text-green-600" /> },
-        { name: "Stripe", icon: <SiStripe className="text-purple-500" /> }
-      ],
-      status: "live",
-      codeLink: "#",
-      demoLink: "#",
-      image: "https://cdn.dribbble.com/userupload/6735262/file/original-c66f947e624727398705ba7ff4dd52d9.png?resize=1024x768&vertical=center"
-    },
-    {
-      title: "Swerve Clothing Store",
-      description: "Modern e-commerce solution featuring:",
-      details: [
-        "✓ Product catalog with filters and search",
-        "✓ Shopping cart with persistent storage",
-        "✓ Secure checkout with Stripe integration",
-        "✓ Order history and tracking"
-      ],
-      technologies: [
-        { name: "Next.js", icon: <SiNextdotjs className="text-black dark:text-white" /> },
-        { name: "Stripe", icon: <SiStripe className="text-purple-500" /> },
-        { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-600" /> }
-      ],
-      status: "coming-soon",
-      image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    },
-    {
-      title: "Task Manager Pro",
-      description: "Collaborative productivity tool including:",
-      details: [
-        "✓ Team workspaces with role-based access",
-        "✓ Drag-and-drop task boards",
-        "✓ Time tracking and reporting",
-        "✓ Calendar integration"
-      ],
-      technologies: [
-        { name: "React", icon: <FaReact className="text-blue-400" /> },
-        { name: "GraphQL", icon: <SiGraphql className="text-pink-600" /> },
-       
-      ],
-      status: "under-development",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80"
-    },
-    {
-      title: "FitTrack",
-      description: "Comprehensive fitness application offering:",
-      details: [
-        "✓ Personalized workout plans",
-        "✓ Exercise demonstration videos",
-        "✓ Nutrition tracking",
-        "✓ Progress analytics"
-      ],
-      technologies: [
-        { name: "React Native", icon: <FaReact className="text-blue-400" /> },
-        { name: "Firebase", icon: <SiFirebase className="text-yellow-400" /> }
-      ],
-      status: "under-development",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-    }
-  ];
-
   return (
-    <div className="animated-gradient min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
-          <h1 className="text-4xl font-bold text-white fade-in text-center md:text-left">
-            My Development Projects
-          </h1>
-          <Link 
-            to="/projects" 
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-white transition-colors whitespace-nowrap"
-          >
-            <FaPalette className="text-lg" />
-            View Graphic Design Projects
-          </Link>
-        </div>
-        
-        <div className="space-y-20">
-          {projects.map((project, index) => (
-            <div 
-              key={index}
-              className={`flex flex-col md:flex-row items-center gap-8
-                ${index % 2 === 0 ? 'slide-in-left' : 'slide-in-right'}`}
-              style={{ animationDelay: `${index * 0.2}s` }}
+    <section style={{ background: "var(--black)" }} className="w-full">
+      <div className="max-w-6xl mx-auto px-6 py-28">
+
+        {/* Section label */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }} viewport={{ once: false }}
+          style={{ color: "var(--red)", fontFamily: "monospace", fontSize: "0.8rem", letterSpacing: "0.12em" }}
+          className="mb-16 uppercase"
+        >
+          // Selected Work
+        </motion.p>
+
+        {/* Projects list */}
+        <motion.div
+          variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.1 }}
+          className="flex flex-col"
+        >
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              variants={itemVariants}
+              className="group grid md:grid-cols-12 gap-6 md:gap-10 pb-16 mb-16"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <div className="w-full md:w-1/2 relative">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-auto max-h-96 object-cover rounded-lg border border-gray-700"
-                />
-                {project.status !== "live" && (
-                  <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm flex items-center">
-                    {project.status === "coming-soon" ? (
-                      <>
-                        <FaClock className="mr-1" /> Coming Soon
-                      </>
-                    ) : (
-                      <>
-                        <FaTools className="mr-1" /> Under Development
-                      </>
-                    )}
-                  </div>
-                )}
+              {/* Number */}
+              <div className="md:col-span-2 flex items-start">
+                <span
+                  style={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 900,
+                    fontSize: "clamp(3rem, 8vw, 5.5rem)",
+                    lineHeight: 1,
+                    color: "transparent",
+                    WebkitTextStroke: "1px rgba(255,255,255,0.15)",
+                    userSelect: "none",
+                  }}
+                >
+                  {padNum(i)}
+                </span>
               </div>
-              
-              <div className="w-full md:w-1/2 text-white">
-                <h2 className="text-2xl md:text-3xl font-bold mb-4">{project.title}</h2>
-                <p className="mb-3 opacity-90">{project.description}</p>
-                
-                <ul className="mb-4 space-y-2">
-                  {project.details.map((detail, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="text-green-400 mr-2">•</span>
-                      <span className="text-gray-200">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, i) => (
-                    <span 
-                      key={i} 
-                      className="px-3 py-1 bg-blue-600 bg-opacity-20 rounded-full text-sm flex items-center gap-1"
+
+              {/* Image */}
+              <div className="md:col-span-4 overflow-hidden" style={{ borderRadius: "2px" }}>
+                <motion.img
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.5 }}
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 md:h-56 object-cover"
+                  style={{ filter: "grayscale(30%)" }}
+                />
+              </div>
+
+              {/* Content */}
+              <div className="md:col-span-6 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <h2 className="text-2xl md:text-3xl font-bold">{project.title}</h2>
+                    <span className="text-xs text-white/30 ml-auto">{project.year}</span>
+                  </div>
+
+                  {project.status !== "live" && (
+                    <span
+                      style={{ border: "1px solid rgba(224,49,32,0.4)", color: "var(--red)", fontSize: "0.65rem", letterSpacing: "0.08em", padding: "0.2rem 0.6rem" }}
+                      className="inline-flex items-center gap-1 mb-3 uppercase"
                     >
-                      {tech.icon}
-                      {tech.name}
+                      {project.status === "coming-soon" ? <><FaClock size={10} /> Coming Soon</> : <><FaTools size={10} /> In Dev</>}
                     </span>
-                  ))}
+                  )}
+
+                  <p className="text-white/50 leading-relaxed mb-5 text-sm">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((t) => (
+                      <span
+                        key={t}
+                        style={{ border: "1px solid rgba(255,255,255,0.1)", fontSize: "0.7rem", padding: "0.2rem 0.6rem", letterSpacing: "0.04em" }}
+                        className="text-white/50"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="flex gap-4 flex-wrap">
-                  <a 
-                    href={project.codeLink || "#"} 
-                    className={`px-4 py-2 rounded-lg flex items-center gap-2
-                      ${project.codeLink ? "bg-gray-800 hover:bg-gray-700" : "bg-gray-700 cursor-not-allowed"}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub /> Code
-                  </a>
-                  
-                  {project.status === "live" ? (
-                    <a 
-                      href={project.demoLink} 
-                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2"
+
+                <div className="flex gap-3">
+                  {project.codeLink && project.codeLink !== "#" && (
+                    <a
+                      href={project.codeLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
                     >
-                      <FaExternalLinkAlt /> Live Demo
+                      <FaGithub /> Code
                     </a>
-                  ) : (
-                    <button 
-                      className="px-4 py-2 bg-gray-700 rounded-lg flex items-center gap-2 cursor-not-allowed"
-                      disabled
+                  )}
+                  {project.status === "live" && project.demoLink && project.demoLink !== "#" && (
+                    <a
+                      href={project.demoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ background: "var(--red)" }}
+                      className="flex items-center gap-2 text-sm text-white px-4 py-2 hover:opacity-80 transition-opacity"
                     >
-                      <FaExternalLinkAlt /> {project.status === "coming-soon" ? "Coming Soon" : "In Development"}
-                    </button>
+                      <FaExternalLinkAlt size={12} /> Live →
+                    </a>
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* All Projects link */}
+        <motion.div
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6 }} viewport={{ once: false }}
+          className="text-center mt-4"
+        >
+          <Link
+            to="/projects"
+            style={{ border: "1px solid rgba(255,255,255,0.2)", padding: "0.9rem 2.5rem", fontSize: "0.85rem", letterSpacing: "0.06em", fontWeight: 600 }}
+            className="inline-block text-white hover:border-[#e03120] hover:text-[#e03120] transition-all duration-200 uppercase"
+          >
+            View All Projects →
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
