@@ -242,23 +242,26 @@ export default function Header() {
           Scroll ↓
         </motion.p>
 
-        {/* ── Giant overflowing name — BEHIND photo ── */}
+        {/* ── Giant name — left side, wraps to 2 lines, behind photo ── */}
         <motion.h1
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: "absolute",
-            bottom: "2.6rem",   /* sit just above ticker */
+            bottom: "2.6rem",
             left: "-0.04em",
-            zIndex: 5,          /* BEHIND photo (z:10) but above bg */
+            zIndex: 5,
             fontFamily: "'Poppins', sans-serif",
             fontWeight: 900,
-            fontSize: "clamp(5rem, 18vw, 18rem)",
-            lineHeight: 0.85,
+            fontSize: "clamp(3.5rem, 10vw, 9rem)",
+            lineHeight: 0.88,
             color: "#0a0a0a",
-            letterSpacing: "-0.05em",
-            whiteSpace: "nowrap",
+            letterSpacing: "-0.04em",
+            /* Allow wrapping so it fits on the left */
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            width: "52%",
             userSelect: "none",
             pointerEvents: "none",
             y: nameY,

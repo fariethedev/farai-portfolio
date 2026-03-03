@@ -100,11 +100,11 @@ export default function Navbar() {
             Hire Me →
           </Link>
 
-          {/* Mobile burger */}
+          {/* Mobile burger — Tailwind md:hidden controls visibility */}
           <button
             onClick={() => setIsOpen(true)}
-            style={{ color: onLight ? "#0a0a0a" : "#fff", transition: "color 0.3s", minWidth: "44px", minHeight: "44px", display: "flex", alignItems: "center", justifyContent: "flex-end" }}
-            className="md:hidden text-xl focus:outline-none"
+            style={{ color: onLight ? "#0a0a0a" : "#fff", transition: "color 0.3s", minWidth: "44px", minHeight: "44px" }}
+            className="md:hidden text-xl focus:outline-none flex items-center justify-end"
           >
             <FaBars />
           </button>
