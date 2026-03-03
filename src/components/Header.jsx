@@ -85,7 +85,7 @@ function Ticker() {
             color: "rgba(255,255,255,0.5)",
             padding: "0 1.5rem",
           }}>
-            {item}<span style={{ color: "#e03120", marginLeft: "1.5rem" }}>·</span>
+            {item}<span style={{ color: "#e03120", marginLeft: "2rem" }}>·</span>
           </span>
         ))}
       </motion.div>
@@ -110,7 +110,6 @@ export default function Header() {
       ref={sectionRef}
       style={{ background: "var(--off-white)", overflowX: "hidden" }}
       className="relative w-full overflow-hidden"
-    /* Fixed full-viewport height */
     >
       {/* ════════════════ DESKTOP (≥ 768px) ════════════════ */}
       <div
@@ -126,11 +125,9 @@ export default function Header() {
             position: "absolute",
             top: 0,
             right: 0,
-            /* Photo takes up right ~48% */
             width: "48%",
-            /* Only goes down to where ticker begins */
             height: "calc(100% - 2.6rem)",
-            zIndex: 10, /* ON TOP of the name text */
+            zIndex: 10,
             y: photoY,
             opacity: photoOp,
           }}
@@ -147,7 +144,6 @@ export default function Header() {
               display: "block",
             }}
           />
-          {/* Subtle left-side fade so name bleeds through at the bottom */}
           <div style={{
             position: "absolute",
             inset: 0,
@@ -170,7 +166,6 @@ export default function Header() {
             opacity: contentOp,
           }}
         >
-          {/* Small label */}
           <p style={{
             fontFamily: "'Poppins', sans-serif",
             fontSize: "0.7rem",
@@ -183,7 +178,17 @@ export default function Header() {
             Portfolio — 2025
           </p>
 
-
+          <h2 style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(2rem, 5vw, 4rem)",
+            lineHeight: 1.1,
+            color: "#0a0a0a",
+            letterSpacing: "-0.04em",
+            marginBottom: "0.8rem",
+          }}>
+            Farai
+          </h2>
 
           <p style={{
             fontFamily: "'Poppins', sans-serif",
@@ -199,7 +204,6 @@ export default function Header() {
             FullStack Developer<br />&amp; Graphic Designer
           </p>
 
-          {/* Social slide-reveal buttons */}
           <div style={{ display: "flex", gap: "0.5rem" }}>
             {socials.map((s) => (
               <SliderLink key={s.label} icon={s.icon} label={s.label} href={s.href} />
@@ -207,7 +211,7 @@ export default function Header() {
           </div>
         </motion.div>
 
-        {/* ── Scroll hint — vertical right ── */}
+        {/* ── Scroll hint ── */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -230,7 +234,31 @@ export default function Header() {
           Scroll ↓
         </motion.p>
 
-
+        {/* ── Giant background name ── */}
+        <motion.h1
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            position: "absolute",
+            bottom: "2.6rem",
+            left: "-0.04em",
+            zIndex: 5,
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 900,
+            fontSize: "clamp(6rem, 25vw, 30rem)",
+            lineHeight: 0.85,
+            color: "#0a0a0a",
+            letterSpacing: "-0.05em",
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            pointerEvents: "none",
+            y: nameY,
+            opacity: nameOp,
+          }}
+        >
+          Farai
+        </motion.h1>
 
         <Ticker />
       </div>
@@ -240,18 +268,13 @@ export default function Header() {
         className="md:hidden flex flex-col relative"
         style={{ height: "100svh", minHeight: "580px" }}
       >
-        {/* Photo — top portion, object-cover portrait */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9 }}
           style={{ opacity: photoOp, y: photoY, position: "relative", flex: "0 0 54%" }}
         >
-          <div style={{
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-          }}>
+          <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
             <img
               src="/images/FARAIIMAGE.jpg"
               alt="Farai Mahaso"
@@ -264,7 +287,6 @@ export default function Header() {
                 display: "block",
               }}
             />
-            {/* Bottom fade into off-white */}
             <div style={{
               position: "absolute",
               bottom: 0, left: 0, right: 0,
@@ -274,7 +296,6 @@ export default function Header() {
           </div>
         </motion.div>
 
-        {/* Bottom content */}
         <motion.div
           style={{ opacity: contentOp, y: contentY, flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 1.25rem 2.8rem" }}
         >
@@ -303,13 +324,14 @@ export default function Header() {
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 900,
-              fontSize: "clamp(2.8rem, 11vw, 4.5rem)",
+              fontSize: "clamp(3.5rem, 15vw, 6rem)",
               lineHeight: 0.92,
               color: "#0a0a0a",
               letterSpacing: "-0.04em",
               margin: 0,
             }}
           >
+            Farai
           </motion.h1>
         </motion.div>
 
