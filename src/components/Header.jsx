@@ -183,19 +183,7 @@ export default function Header() {
             Portfolio — 2025
           </p>
 
-          {/* Role headline — editorial, bold, left-aligned */}
-          <h2 style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(1.4rem, 3vw, 2.2rem)",
-            lineHeight: 1.15,
-            color: "#0a0a0a",
-            letterSpacing: "-0.02em",
-            marginBottom: "0.6rem",
-            maxWidth: "360px",
-          }}>
-            Farai Mahaso
-          </h2>
+
 
           <p style={{
             fontFamily: "'Poppins', sans-serif",
@@ -242,34 +230,7 @@ export default function Header() {
           Scroll ↓
         </motion.p>
 
-        {/* ── Giant name — left side, wraps to 2 lines, behind photo ── */}
-        <motion.h1
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            position: "absolute",
-            bottom: "2.6rem",
-            left: "-0.04em",
-            zIndex: 5,
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 900,
-            fontSize: "clamp(3.5rem, 10vw, 9rem)",
-            lineHeight: 0.88,
-            color: "#0a0a0a",
-            letterSpacing: "-0.04em",
-            /* Allow wrapping so it fits on the left */
-            whiteSpace: "normal",
-            wordBreak: "break-word",
-            width: "52%",
-            userSelect: "none",
-            pointerEvents: "none",
-            y: nameY,
-            opacity: nameOp,
-          }}
-        >
-          Farai Mahaso
-        </motion.h1>
+
 
         <Ticker />
       </div>
@@ -349,7 +310,6 @@ export default function Header() {
               margin: 0,
             }}
           >
-            Farai<br />Mahaso
           </motion.h1>
         </motion.div>
 
