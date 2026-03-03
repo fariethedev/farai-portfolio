@@ -61,7 +61,7 @@ function padNum(n) {
 export default function Projects() {
   return (
     <section style={{ background: "var(--black)" }} className="w-full">
-      <div className="max-w-6xl mx-auto px-6 py-28">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-28">
 
         {/* Section label */}
         <motion.p
@@ -85,8 +85,8 @@ export default function Projects() {
               className="group grid md:grid-cols-12 gap-6 md:gap-10 pb-16 mb-16"
               style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
             >
-              {/* Number */}
-              <div className="md:col-span-2 flex items-start">
+              {/* Number — desktop only */}
+              <div className="hidden md:flex md:col-span-2 items-start">
                 <span
                   style={{
                     fontFamily: "'Poppins', sans-serif",
@@ -109,7 +109,7 @@ export default function Projects() {
                   transition={{ duration: 0.5 }}
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 md:h-56 object-cover"
+                  className="w-full h-40 md:h-56 object-cover"
                   style={{ filter: "grayscale(30%)" }}
                 />
               </div>

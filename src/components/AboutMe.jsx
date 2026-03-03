@@ -60,7 +60,7 @@ export default function AboutMe() {
     <section style={{ background: "var(--black)" }} className="w-full">
 
       {/* ── Intro block ── */}
-      <div className="max-w-6xl mx-auto px-6 py-28">
+      <div className="max-w-6xl mx-auto px-4 md:px-4 md:px-6 py-12 md:py-16 md:py-28">
         {/* Section label */}
         <motion.p
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: false }}
@@ -249,3 +249,4 @@ export default function AboutMe() {
     </section>
   );
 }
+

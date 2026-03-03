@@ -40,7 +40,7 @@ export default function Navbar() {
         }}
         className="fixed top-0 left-0 w-full z-50"
       >
-        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:py-4 flex items-center justify-between">
           {/* Logo */}
           <Link
             to="/"
@@ -103,7 +103,7 @@ export default function Navbar() {
           {/* Mobile burger */}
           <button
             onClick={() => setIsOpen(true)}
-            style={{ color: onLight ? "#0a0a0a" : "#fff", transition: "color 0.3s" }}
+            style={{ color: onLight ? "#0a0a0a" : "#fff", transition: "color 0.3s", minWidth: "44px", minHeight: "44px", display: "flex", alignItems: "center", justifyContent: "flex-end" }}
             className="md:hidden text-xl focus:outline-none"
           >
             <FaBars />
