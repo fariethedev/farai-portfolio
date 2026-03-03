@@ -3,8 +3,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const socials = [
-  { icon: <FaLinkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/farai-mahaso-275a88267" },
-  { icon: <FaGithub size={18} />, label: "GitHub", href: "https://github.com/fariethedev" },
+  { icon: <FaLinkedin size={16} />, label: "LinkedIn", href: "https://www.linkedin.com/in/farai-mahaso-275a88267" },
+  { icon: <FaGithub size={16} />, label: "GitHub", href: "https://github.com/fariethedev" },
 ];
 
 function SliderLink({ icon, label, href }) {
@@ -20,28 +20,27 @@ function SliderLink({ icon, label, href }) {
         display: "inline-flex",
         alignItems: "center",
         overflow: "hidden",
-        background: hovered ? "#e03120" : "rgba(10,10,10,0.85)",
+        background: hovered ? "#e03120" : "rgba(10,10,10,0.82)",
         color: "#fff",
-        padding: "0.5rem 0.75rem",
+        padding: "0.5rem 0.7rem",
         gap: "0.4rem",
         textDecoration: "none",
         fontFamily: "'Poppins', sans-serif",
         fontWeight: 700,
-        fontSize: "0.72rem",
-        letterSpacing: "0.07em",
+        fontSize: "0.7rem",
+        letterSpacing: "0.08em",
         textTransform: "uppercase",
-        transition: "background 0.25s",
+        transition: "background 0.22s",
         whiteSpace: "nowrap",
         cursor: "pointer",
-        minHeight: "44px", // touch target
-        borderRadius: "4px",
+        minHeight: "44px",
       }}
     >
       <span style={{ display: "flex", flexShrink: 0 }}>{icon}</span>
       <motion.span
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: hovered ? "auto" : 0, opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: "easeInOut" }}
+        transition={{ duration: 0.22, ease: "easeInOut" }}
         style={{ display: "inline-block", overflow: "hidden" }}
       >
         {label}
@@ -61,41 +60,32 @@ const tickerItems = [
 function Ticker() {
   const repeated = [...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems];
   return (
-    <div
-      style={{
-        background: "#0a0a0a",
-        borderTop: "1px solid rgba(255,255,255,0.12)",
-        overflow: "hidden",
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 20,
-        height: "2.6rem",
-        display: "flex",
-        alignItems: "center",
-        flexShrink: 0,
-      }}
-    >
+    <div style={{
+      background: "#0a0a0a",
+      borderTop: "1px solid rgba(255,255,255,0.1)",
+      overflow: "hidden",
+      position: "absolute",
+      bottom: 0, left: 0, right: 0,
+      zIndex: 30,
+      height: "2.6rem",
+      display: "flex",
+      alignItems: "center",
+    }}>
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
+        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
         style={{ display: "flex", whiteSpace: "nowrap", willChange: "transform" }}
       >
         {repeated.map((item, i) => (
-          <span
-            key={i}
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "0.6rem",
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.55)",
-              padding: "0 1.5rem",
-            }}
-          >
-            {item}
-            <span style={{ color: "#e03120", marginLeft: "1.5rem" }}>·</span>
+          <span key={i} style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "0.6rem",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.5)",
+            padding: "0 1.5rem",
+          }}>
+            {item}<span style={{ color: "#e03120", marginLeft: "1.5rem" }}>·</span>
           </span>
         ))}
       </motion.div>
@@ -107,34 +97,196 @@ export default function Header() {
   const sectionRef = useRef(null);
   const { scrollY } = useScroll();
 
-  const nameY = useTransform(scrollY, [0, 500], [0, -120]);
-  const nameOp = useTransform(scrollY, [0, 350], [1, 0]);
-  const imgY = useTransform(scrollY, [0, 500], [0, -60]);
-  const imgOp = useTransform(scrollY, [0, 300], [1, 0]);
+  // Scroll-driven parallax
+  const contentY = useTransform(scrollY, [0, 500], [0, -100]);
+  const contentOp = useTransform(scrollY, [0, 350], [1, 0]);
+  const photoY = useTransform(scrollY, [0, 500], [0, -60]);
+  const photoOp = useTransform(scrollY, [0, 400], [1, 0]);
+  const nameY = useTransform(scrollY, [0, 500], [0, -130]);
+  const nameOp = useTransform(scrollY, [0, 380], [1, 0]);
 
   return (
     <section
       ref={sectionRef}
       style={{ background: "var(--off-white)", overflowX: "hidden" }}
-      className="relative w-full min-h-screen flex flex-col overflow-hidden"
+      className="relative w-full overflow-hidden"
+    /* Fixed full-viewport height */
     >
-      {/* ═══════════════ MOBILE LAYOUT (< md) ═══════════════ */}
-      <div className="md:hidden flex flex-col h-screen relative">
-        {/* Photo — top half, rounded bottom corners */}
+      {/* ════════════════ DESKTOP (≥ 768px) ════════════════ */}
+      <div
+        className="hidden md:block relative w-full"
+        style={{ height: "100vh", minHeight: "600px" }}
+      >
+        {/* ── Full-height photo, RIGHT side, z-index above name ── */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.0, ease: "easeOut" }}
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            /* Photo takes up right ~48% */
+            width: "48%",
+            /* Only goes down to where ticker begins */
+            height: "calc(100% - 2.6rem)",
+            zIndex: 10, /* ON TOP of the name text */
+            y: photoY,
+            opacity: photoOp,
+          }}
+        >
+          <img
+            src="/images/FARAIIMAGE.jpg"
+            alt="Farai Mahaso"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              filter: "grayscale(20%)",
+              display: "block",
+            }}
+          />
+          {/* Subtle left-side fade so name bleeds through at the bottom */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to right, var(--off-white) 0%, transparent 20%)",
+            pointerEvents: "none",
+          }} />
+        </motion.div>
+
+        {/* ── Upper-left: name tag + role + socials ── */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          style={{ opacity: imgOp, y: imgY }}
-          className="relative w-full"
-          style2={{ flex: "0 0 55%" }}
+          transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            position: "absolute",
+            top: "clamp(5rem, 12vh, 8rem)",
+            left: "clamp(1.5rem, 4vw, 4rem)",
+            zIndex: 20,
+            y: contentY,
+            opacity: contentOp,
+          }}
+        >
+          {/* Small label */}
+          <p style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "0.7rem",
+            fontWeight: 600,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "rgba(10,10,10,0.45)",
+            marginBottom: "1.2rem",
+          }}>
+            Portfolio — 2025
+          </p>
+
+          {/* Role headline — editorial, bold, left-aligned */}
+          <h2 style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(1.4rem, 3vw, 2.2rem)",
+            lineHeight: 1.15,
+            color: "#0a0a0a",
+            letterSpacing: "-0.02em",
+            marginBottom: "0.6rem",
+            maxWidth: "360px",
+          }}>
+            Farai Mahaso
+          </h2>
+
+          <p style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(0.75rem, 1.2vw, 0.95rem)",
+            letterSpacing: "0.04em",
+            textTransform: "uppercase",
+            color: "#0a0a0a",
+            opacity: 0.55,
+            marginBottom: "2rem",
+            lineHeight: 1.6,
+          }}>
+            FullStack Developer<br />&amp; Graphic Designer
+          </p>
+
+          {/* Social slide-reveal buttons */}
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            {socials.map((s) => (
+              <SliderLink key={s.label} icon={s.icon} label={s.label} href={s.href} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── Scroll hint — vertical right ── */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          style={{
+            position: "absolute",
+            right: "1.25rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+            writingMode: "vertical-rl",
+            fontSize: "0.58rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "#0a0a0a",
+            opacity: 0.3,
+            fontFamily: "'Poppins', sans-serif",
+            zIndex: 20,
+          }}
+        >
+          Scroll ↓
+        </motion.p>
+
+        {/* ── Giant overflowing name — BEHIND photo ── */}
+        <motion.h1
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            position: "absolute",
+            bottom: "2.6rem",   /* sit just above ticker */
+            left: "-0.04em",
+            zIndex: 5,          /* BEHIND photo (z:10) but above bg */
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 900,
+            fontSize: "clamp(5rem, 18vw, 18rem)",
+            lineHeight: 0.85,
+            color: "#0a0a0a",
+            letterSpacing: "-0.05em",
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            pointerEvents: "none",
+            y: nameY,
+            opacity: nameOp,
+          }}
+        >
+          Farai Mahaso
+        </motion.h1>
+
+        <Ticker />
+      </div>
+
+      {/* ════════════════ MOBILE (< 768px) ════════════════ */}
+      <div
+        className="md:hidden flex flex-col relative"
+        style={{ height: "100svh", minHeight: "580px" }}
+      >
+        {/* Photo — top portion, object-cover portrait */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9 }}
+          style={{ opacity: photoOp, y: photoY, position: "relative", flex: "0 0 54%" }}
         >
           <div style={{
-            height: "52vmax",
-            maxHeight: "55vh",
-            borderRadius: "0 0 20px 20px",
+            width: "100%",
+            height: "100%",
             overflow: "hidden",
-            background: "#f0ede8",
           }}>
             <img
               src="/images/FARAIIMAGE.jpg"
@@ -144,55 +296,50 @@ export default function Header() {
                 height: "100%",
                 objectFit: "cover",
                 objectPosition: "center top",
+                filter: "grayscale(10%)",
+                display: "block",
               }}
             />
+            {/* Bottom fade into off-white */}
+            <div style={{
+              position: "absolute",
+              bottom: 0, left: 0, right: 0,
+              height: "35%",
+              background: "linear-gradient(to bottom, transparent, var(--off-white))",
+            }} />
           </div>
         </motion.div>
 
-        {/* Bottom content block */}
+        {/* Bottom content */}
         <motion.div
-          style={{ opacity: nameOp, y: nameY, flex: 1 }}
-          className="flex flex-col justify-end pb-12 px-4"
+          style={{ opacity: contentOp, y: contentY, flex: 1, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 1.25rem 2.8rem" }}
         >
-          {/* Role text */}
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "0.78rem",
-              fontWeight: 700,
-              letterSpacing: "0.04em",
-              color: "#0a0a0a",
-              marginBottom: "10px",
-            }}
+            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.6 }}
+            style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.04em", color: "#0a0a0a", marginBottom: "8px" }}
           >
             <span style={{ color: "#e03120", marginRight: "0.3rem" }}>//</span>
             FullStack Developer &amp; Graphic Designer
           </motion.p>
 
-          {/* Social icons */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.6 }}
-            className="flex gap-2 mb-3"
+            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.38, duration: 0.6 }}
+            style={{ display: "flex", gap: "0.45rem", marginBottom: "10px" }}
           >
             {socials.map((s) => (
               <SliderLink key={s.label} icon={s.icon} label={s.label} href={s.href} />
             ))}
           </motion.div>
 
-          {/* Name */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 900,
-              fontSize: "clamp(3rem, 12vw, 5rem)",
+              fontSize: "clamp(2.8rem, 11vw, 4.5rem)",
               lineHeight: 0.92,
               color: "#0a0a0a",
               letterSpacing: "-0.04em",
@@ -201,127 +348,6 @@ export default function Header() {
           >
             Farai<br />Mahaso
           </motion.h1>
-        </motion.div>
-
-        <Ticker />
-      </div>
-
-      {/* ═══════════════ DESKTOP LAYOUT (>= md) ═══════════════ */}
-      <div className="hidden md:block relative w-full min-h-screen">
-        {/* Photo — standalone rounded card, top-right */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.0, ease: "easeOut" }}
-          style={{
-            position: "absolute",
-            top: "5rem",
-            right: "3rem",
-            width: "clamp(200px, 28vw, 380px)",
-            height: "clamp(240px, 36vw, 480px)",
-            zIndex: 5,
-            borderRadius: "16px",
-            overflow: "hidden",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.18)",
-            background: "#f0ede8",
-            y: imgY,
-            opacity: imgOp,
-          }}
-        >
-          <img
-            src="/images/FARAIIMAGE.jpg"
-            alt="Farai Mahaso"
-            style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center center" }}
-          />
-        </motion.div>
-
-        {/* Bottom stack: role + social + name */}
-        <motion.div
-          style={{
-            position: "absolute",
-            bottom: "2.6rem",
-            left: 0,
-            right: 0,
-            zIndex: 15,
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-            y: nameY,
-            opacity: nameOp,
-          }}
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: "clamp(0.8rem, 1.3vw, 1rem)",
-              fontWeight: 700,
-              letterSpacing: "0.02em",
-              color: "#0a0a0a",
-              whiteSpace: "nowrap",
-              paddingLeft: "1.5rem",
-              margin: 0,
-            }}
-          >
-            <span style={{ color: "#e03120", marginRight: "0.35rem" }}>//</span>
-            FullStack Developer &amp; Graphic Designer
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            style={{ display: "flex", gap: "0.5rem", paddingLeft: "1.5rem" }}
-          >
-            {socials.map((s) => (
-              <SliderLink key={s.label} icon={s.icon} label={s.label} href={s.href} />
-            ))}
-          </motion.div>
-
-          <motion.h1
-            initial={{ y: 60, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(4.5rem, 15vw, 15rem)",
-              lineHeight: 0.9,
-              color: "#0a0a0a",
-              letterSpacing: "-0.04em",
-              whiteSpace: "nowrap",
-              userSelect: "none",
-              margin: 0,
-              padding: 0,
-              pointerEvents: "none",
-            }}
-          >
-            Farai Mahaso
-          </motion.h1>
-        </motion.div>
-
-        {/* Scroll hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1 }}
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "1.25rem",
-            zIndex: 10,
-            writingMode: "vertical-rl",
-            fontSize: "0.6rem",
-            letterSpacing: "0.18em",
-            color: "#0a0a0a",
-            textTransform: "uppercase",
-            opacity: 0.35,
-            fontFamily: "'Poppins', sans-serif",
-          }}
-        >
-          Scroll ↓
         </motion.div>
 
         <Ticker />
