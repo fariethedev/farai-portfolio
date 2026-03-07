@@ -312,7 +312,7 @@ export default function AboutMe() {
             marginBottom: "0.4rem",
             lineHeight: 1.4,
           }}>
-            The Complete Full-Stack Web Development Bootcamp
+            Spring Framework + Spring Boot Java Full Stack: eCommerce REST API, Spring Data JPA, Spring Security 7, JWT, Deploy AWS
           </h3>
           <p style={{
             fontFamily: "'Poppins', sans-serif",
@@ -320,7 +320,7 @@ export default function AboutMe() {
             color: "rgba(255,255,255,0.4)",
             marginBottom: "1.4rem",
           }}>
-            Instructor: Angela Yu · Udemy
+            Java Spring Boot Full Stack: eCommerce Project Masterclass · 90.5 hrs · ⭐ 4.6 (22,945 reviews)
           </p>
 
           {/* Progress bar */}
