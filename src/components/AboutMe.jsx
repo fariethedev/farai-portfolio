@@ -246,6 +246,118 @@ export default function AboutMe() {
         </motion.div>
       </div>
 
+      {/* ── Certifications ── */}
+      <div className="max-w-6xl mx-auto px-6 pb-24">
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", marginBottom: "3rem" }} />
+        <motion.p
+          variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: false }}
+          style={{ color: "var(--red)", fontFamily: "monospace", fontSize: "0.8rem", letterSpacing: "0.12em" }}
+          className="mb-12 uppercase"
+        >
+          // Certifications
+        </motion.p>
+
+        <motion.div
+          variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: false }}
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "12px",
+            padding: "1.8rem 2rem",
+            maxWidth: "560px",
+          }}
+        >
+          {/* Header row */}
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.2rem" }}>
+            {/* Udemy logo pill */}
+            <div style={{
+              background: "#a435f0",
+              borderRadius: "6px",
+              padding: "0.35rem 0.7rem",
+              flexShrink: 0,
+            }}>
+              <span style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 800,
+                fontSize: "0.75rem",
+                color: "#fff",
+                letterSpacing: "0.04em",
+              }}>
+                Udemy
+              </span>
+            </div>
+
+            {/* In Progress badge */}
+            <span style={{
+              background: "rgba(234,179,8,0.12)",
+              color: "#eab308",
+              border: "1px solid rgba(234,179,8,0.25)",
+              borderRadius: "999px",
+              fontSize: "0.62rem",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              padding: "0.2rem 0.7rem",
+              textTransform: "uppercase",
+            }}>
+              In Progress
+            </span>
+          </div>
+
+          {/* Course title */}
+          <h3 style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 700,
+            fontSize: "1rem",
+            color: "#fff",
+            marginBottom: "0.4rem",
+            lineHeight: 1.4,
+          }}>
+            The Complete Full-Stack Web Development Bootcamp
+          </h3>
+          <p style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: "0.75rem",
+            color: "rgba(255,255,255,0.4)",
+            marginBottom: "1.4rem",
+          }}>
+            Instructor: Angela Yu · Udemy
+          </p>
+
+          {/* Progress bar */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+              <span style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", fontFamily: "'Poppins', sans-serif" }}>
+                Progress
+              </span>
+              <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#a435f0", fontFamily: "'Poppins', sans-serif" }}>
+                70%
+              </span>
+            </div>
+            <div style={{
+              background: "rgba(255,255,255,0.07)",
+              borderRadius: "999px",
+              height: "6px",
+              overflow: "hidden",
+            }}>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "70%" }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                viewport={{ once: false }}
+                style={{
+                  height: "100%",
+                  borderRadius: "999px",
+                  background: "linear-gradient(to right, #7c3aed, #a435f0)",
+                }}
+              />
+            </div>
+            <p style={{ fontSize: "0.68rem", color: "rgba(255,255,255,0.3)", marginTop: "0.6rem", fontFamily: "'Poppins', sans-serif" }}>
+              Certificate awarded upon 100% completion
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
     </section>
   );
 }
