@@ -233,12 +233,42 @@ export default function Header() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.7 }}
-            style={{ display: "flex", gap: "0.6rem" }}
+            style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", justifyContent: "center" }}
           >
             {socials.map((s) => (
               <SliderLink key={s.label} icon={s.icon} label={s.label} href={s.href} />
             ))}
           </motion.div>
+
+          {/* ── Download CV ── */}
+          <motion.a
+            href="/cv.pdf"
+            download
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.86, duration: 0.7 }}
+            style={{
+              marginTop: "1.2rem",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.7rem 1.8rem",
+              border: "1px solid rgba(255,255,255,0.2)",
+              color: "#fff",
+              textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.75rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              transition: "border-color 0.2s, color 0.2s",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "#2563eb"; e.currentTarget.style.color = "#2563eb"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; e.currentTarget.style.color = "#fff"; }}
+          >
+            ↓ Download CV
+          </motion.a>
+
         </motion.div>
 
         <Ticker />

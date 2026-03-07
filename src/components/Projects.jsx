@@ -21,7 +21,7 @@ const projects = [
     year: "2025",
     description: "Hybrid marketplace and social platform with follower system, product listings, social feed, direct messaging, and payment integration.",
     technologies: ["React", "Firebase", "Node.js", "Stripe"],
-    status: "live",
+    status: "under-development",
     codeLink: "#",
     demoLink: "#",
     image: "https://cdn.dribbble.com/userupload/6735262/file/original-c66f947e624727398705ba7ff4dd52d9.png?resize=1024x768&vertical=center",
@@ -29,9 +29,11 @@ const projects = [
   {
     title: "Swerrv Clothing Store",
     year: "2025",
-    description: "Modern e-commerce solution with product catalog, shopping cart, Stripe checkout, and order tracking.",
-    technologies: ["Next.js", "Stripe", "PostgreSQL"],
-    status: "coming-soon",
+    description: "Full-stack e-commerce platform with product catalog, shopping cart, JWT auth, admin dashboard, and order management — built with React and Spring Boot REST API.",
+    technologies: ["React", "Spring Boot", "Java", "MySQL"],
+    status: "live",
+    codeLink: "https://github.com/fariethedev/swerrv",
+    demoLink: "https://swerrv.vercel.app",
     image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1470&q=80",
   },
   {
