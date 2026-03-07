@@ -79,9 +79,10 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Hire Me */}
-          <Link
-            to="/contact"
+          {/* Download CV */}
+          <a
+            href="/cv.pdf"
+            download
             className="hidden md:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2 transition-all duration-200"
             style={{
               border: onLight ? "1px solid rgba(10,10,10,0.35)" : "1px solid rgba(255,255,255,0.3)",
@@ -89,16 +90,16 @@ export default function Navbar() {
               textDecoration: "none",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#e03120";
-              e.currentTarget.style.color = "#e03120";
+              e.currentTarget.style.borderColor = "#2563eb";
+              e.currentTarget.style.color = "#2563eb";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = onLight ? "rgba(10,10,10,0.35)" : "rgba(255,255,255,0.3)";
               e.currentTarget.style.color = onLight ? "#0a0a0a" : "#fff";
             }}
           >
-            Hire Me →
-          </Link>
+            ↓ Download CV
+          </a>
 
           {/* Mobile burger — Tailwind md:hidden controls visibility */}
           <button
@@ -152,14 +153,15 @@ export default function Navbar() {
                     {l.label}
                   </Link>
                 ))}
-                <Link
-                  to="/contact"
+                <a
+                  href="/cv.pdf"
+                  download
                   onClick={() => setIsOpen(false)}
                   className="mt-4 text-sm font-semibold text-center py-3 transition-all"
                   style={{ border: "1px solid rgba(255,255,255,0.2)", color: "#fff", textDecoration: "none" }}
                 >
-                  Hire Me →
-                </Link>
+                  ↓ Download CV
+                </a>
               </nav>
             </motion.div>
           </>
